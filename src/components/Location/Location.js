@@ -1,24 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 
-export default class Location extends React.Component {
-  state = {
-    planets: []
-  }
+const Location = ({planetsList}) => {
 
-  componentDidMount() {
-    axios.get(`https://rickandmortyapi.com/api/location`)
-      .then(res => {
-        const planets = res.data.results
-        this.setState({ planets });
-      })
-  }
+  return (
+    <ul>
+      { planetsList.map(planet => <li key={planet.id}>{planet.name} - {planet.residents.length}</li>)}
+    </ul>
+  )
 
-  render() {
-    return (
-      <ul>
-        { this.state.planets.map(planet => <li>{planet.name} - {planet.residents.length}</li>)}
-      </ul>
-    )
-  }
 }
+
+export default Location;

@@ -1,4 +1,5 @@
-import Location from './Location';
+import Location from './components/Location/Location';
+
 
 function App() {
   return (

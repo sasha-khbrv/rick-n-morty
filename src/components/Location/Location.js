@@ -3,9 +3,12 @@ import React from 'react';
 const Location = ({planetsList}) => {
 
   return (
-    <ul>
+/*     <ul>
       { planetsList.map(planet => <li key={planet.id}>{planet.name} - {planet.residents.length}</li>)}
-    </ul>
+    </ul> */
+    <svg>
+      
+    </svg>
   )
 
 }

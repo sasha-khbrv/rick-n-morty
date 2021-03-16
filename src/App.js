@@ -1,28 +1,26 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Location from './components/Location/Location';
-import PopUp from './components/PopUp/PopUp';
+
+export default class App extends React.Component {
+  state = {
+    planetsList: []
+  }
+
+  componentDidMount() {
+      axios.get(`https://rickandmortyapi.com/api/location`)
+        .then(res => {
+          const data = res.data.results
+          this.setState({ planetsList: data });
+        })
+  }
 
 
-function App() {
-  const pageState = false;
-
-  const [planetsList, setPlanetsList] = useState([]);
-   
-  useEffect(()  => {
-    const fetchData = async () => {
-        const result =  await axios('https://rickandmortyapi.com/api/location',);
-        setPlanetsList(result.data.results);
-    };
-    fetchData();
-}, []);
-
-  return (    
-    <>
-    {pageState && <Location planetsList={planetsList}/>}
-    <PopUp planetsList={planetsList}/> 
-    </>
-  );
+  render() {
+    return (    
+      <div className="mainContainer">
+        {this.state.planetsList.length > 0 ? <Location planetsList={this.state.planetsList}/> : 'Loading...'}
+      </div>
+    );
+  }
 }
-
-export default App;

@@ -1,16 +1,30 @@
 import React from 'react';
 
-const Location = ({planetsList}) => {
+export default class Location extends React.Component {
 
-  return (
-/*     <ul>
-      { planetsList.map(planet => <li key={planet.id}>{planet.name} - {planet.residents.length}</li>)}
-    </ul> */
-    <svg>
-      
-    </svg>
-  )
+  state = { 
+    width: window.innerWidth, 
+    height: window.innerHeight 
+  };
 
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
+  updateDimensions = () => {
+    this.setState({ 
+      width: window.innerWidth, 
+      height: window.innerHeight 
+    });
+  };
+
+  render() {
+    const planets = this.props.planetsList;
+    return (
+      <span>Window size: {this.state.width} x {this.state.height}</span>
+    )
+  }
 }
-
-export default Location;

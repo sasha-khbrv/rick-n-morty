@@ -23,9 +23,10 @@ export default class Location extends React.Component {
 
   render() {
     const planets = this.props.planetsList;
+    const planetsSize = planets.map(planet => <rect key={planet.id} width={planet.residents.length} height={planet.residents.length} stroke="red" fill="none"/>);
     return ( 
       <svg width={this.state.width} height={this.state.height}>
-        <rect width="100%" height="100%" fill="red" />
+        {planetsSize}
       </svg> 
     )
   }
